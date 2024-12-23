@@ -14,11 +14,23 @@ const Cart = () => {
                <div className='billDetails px-5 text-sm'>
                 <p className='font-extralight py-5'>Bill Details</p>
                 <div className='space-y-3'>
-                  <div className='flex justify-between text-green-400'>
+                  <div className='flex justify-between text-gray-400'>
                     <p>Item Total</p>
-                    <p></p>
-
+                    <p>$560</p>
                   </div>
+                  <div className='flex justify-between text-gray-400'>
+                    <p>Delivery fee</p>
+                    <p>$15</p>
+                  </div>
+                  <div className='flex justify-between text-gray-400'>
+                    <p>Restaurant fee</p>
+                    <p>$25</p>
+                  </div>
+                  <Divider/>
+                </div>
+                <div className='flex justify-between text-gray-400'>
+                  <p>Total</p>
+                  <p>$600</p>
                 </div>
                </div>
             </section>
