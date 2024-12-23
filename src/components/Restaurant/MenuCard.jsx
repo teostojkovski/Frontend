@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Button, Checkbox, FormControlLabel, FormGroup } from '@mui/material'
 import React from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -14,6 +14,9 @@ const demo=[
 ]
 
 const MenuCard = () => {
+  const handleChechBoxChange=(value)=>{
+    console.log("value")
+  }
   return (
     <Accordion>
         <AccordionSummary
@@ -33,11 +36,24 @@ const MenuCard = () => {
           </div>
         </AccordionSummary>
         <AccordionDetails>
-          <from>
+          <form>
             <div className='flex gap-5 flex-wrap'>
-              
+              {demo.map((item)=>(
+                  <div>
+                    <p>{item.category}</p>
+                    <FormGroup>
+                      {item.ingredients.map((item)=> (
+                        <FormControlLabel control={<Checkbox onChange={()=>handleChechBoxChange(item)}/>} label={item} />
+                      ))}
+                    </FormGroup>
+                  </div>
+                  
+                ))}
             </div>
-          </from>
+            <div className='pt-5'>
+              <Button variant="contained" disabled={false} type="submit">{true?"Add to Cart":"Out of Stock"}</Button>
+            </div>
+          </form>
         </AccordionDetails>
       </Accordion>
   )
