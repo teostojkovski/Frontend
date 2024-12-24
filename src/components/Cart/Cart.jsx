@@ -1,19 +1,48 @@
-import { Button, Card, Divider } from '@mui/material'
+import { Box, Button, Card, Divider, Modal } from '@mui/material'
 import React from 'react'
 import CartItem from './CartItem'
 import AddressCard from './AddressCard'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import { Formik } from 'formik';
+import * as Yup from "yup"
+import { code } from 'yupp/util/logger';
 
-const items = [1, 1, 1, 1]
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  outline: "none",
+  boxShadow: 24,
+  p: 4,
+};
+
+const initialValues={
+  streetAddress:"",
+  state:"",
+  code:'',
+  city:""
+}
+const validationSchema=Yup.object.shape({
+  streetAddress:Yup.string().required("Street address is required"),
+  state:Yup.string().required("State is required"),
+  code:Yup.required("Code is required"),
+  city:Yup.string().required("City is required")
+})
+
+const items = [1, 1]
 const Cart = () => {
-  const createOrderUsingSelectedAddress = () => {
-
-  }
-  const handleOpenAddressModel = () => {
+  const createOrderUsingSelectedAddress = () => { };
+  const handleOpenAddressModal = () => setOpen(true);
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
+  const handleSubmit=()=>{
 
   }
   return (
-    <div>
+    <>
       <main className='lg:flex justify-between'>
         <section className='lg:w-[30%] space-y-6 lg:min-h-screen pt-10'>
           {items.map((item) => (
@@ -57,14 +86,28 @@ const Cart = () => {
                 <AddLocationAltIcon />
                 <div className='space-y-3 text-gray-500'>
                   <h1 className="font-semibold text-lg text-white">Add New Address</h1>
-                  <Button variant='outlined' fullWidth onClick={handleOpenAddressModel}>Add</Button>
+                  <Button variant='outlined' fullWidth onClick={handleOpenAddressModal}>Add</Button>
                 </div>
               </Card>
             </div>
           </div>
         </section>
       </main>
-    </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Formik initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}>
+
+          </Formik>
+        </Box>
+      </Modal>
+    </>
   )
 }
 
