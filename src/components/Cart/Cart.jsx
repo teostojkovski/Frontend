@@ -156,12 +156,12 @@ const Cart = () => {
                     label="Code"
                     fullWidth
                     variant="outlined"
-                  error={!ErrorMessage("streetAddress")}
+                  /* error={!ErrorMessage("streetAddress")}
                   helperText={
                     <ErrorMessage>
                       {(msg) => <span className="text-red-600">{msg}</span>}
                     </ErrorMessage>
-                  }
+                  } */
                   />
                 </Grid>
                 <Grid item xs={12}>
