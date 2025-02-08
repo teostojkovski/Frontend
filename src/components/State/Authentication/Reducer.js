@@ -9,6 +9,7 @@ const initialState = {
     favourites: [],
     success: null,
 };
+
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case REGISTER_REQUEST:
